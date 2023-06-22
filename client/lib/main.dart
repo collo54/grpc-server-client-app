@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:proto/proto.dart';
 
@@ -11,12 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter gRPC Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
@@ -51,9 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _getTodo() async {
-    // final id = Random().nextInt(100);
+    final id = Random().nextInt(100);
     final todo = await _stub.getTodo(
-      GetTodoByIdRequest(),
+      GetTodoByIdRequest()..id = id,
     );
     setState(() {
       this.todo = todo;

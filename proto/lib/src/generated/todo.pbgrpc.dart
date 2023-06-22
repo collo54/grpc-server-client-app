@@ -13,42 +13,39 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
+import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'todo.pb.dart' as $0;
 
 export 'todo.pb.dart';
 
-//@$pb.GrpcServiceName('TodoService')  TODO
+@$pb.GrpcServiceName('TodoService')
 class TodoServiceClient extends $grpc.Client {
   static final _$getTodo = $grpc.ClientMethod<$0.GetTodoByIdRequest, $0.Todo>(
       '/TodoService/getTodo',
       ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Todo.fromBuffer(value));
-  static final _$getTodoStream =
-      $grpc.ClientMethod<$0.GetTodoByIdRequest, $0.Todo>(
-          '/TodoService/getTodoStream',
-          ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Todo.fromBuffer(value));
+  static final _$getTodoStream = $grpc.ClientMethod<$0.GetTodoByIdRequest, $0.Todo>(
+      '/TodoService/getTodoStream',
+      ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.Todo.fromBuffer(value));
 
   TodoServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options, interceptors: interceptors);
+      : super(channel, options: options,
+        interceptors: interceptors);
 
-  $grpc.ResponseFuture<$0.Todo> getTodo($0.GetTodoByIdRequest request,
-      {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.Todo> getTodo($0.GetTodoByIdRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getTodo, request, options: options);
   }
 
-  $grpc.ResponseStream<$0.Todo> getTodoStream($0.GetTodoByIdRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createStreamingCall(
-        _$getTodoStream, $async.Stream.fromIterable([request]),
-        options: options);
+  $grpc.ResponseStream<$0.Todo> getTodoStream($0.GetTodoByIdRequest request, {$grpc.CallOptions? options}) {
+    return $createStreamingCall(_$getTodoStream, $async.Stream.fromIterable([request]), options: options);
   }
 }
 
-//@$pb.GrpcServiceName('TodoService') TODO
+@$pb.GrpcServiceName('TodoService')
 abstract class TodoServiceBase extends $grpc.Service {
   $core.String get $name => 'TodoService';
 
@@ -58,31 +55,25 @@ abstract class TodoServiceBase extends $grpc.Service {
         getTodo_Pre,
         false,
         false,
-        ($core.List<$core.int> value) =>
-            $0.GetTodoByIdRequest.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.GetTodoByIdRequest.fromBuffer(value),
         ($0.Todo value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.GetTodoByIdRequest, $0.Todo>(
         'getTodoStream',
         getTodoStream_Pre,
         false,
         true,
-        ($core.List<$core.int> value) =>
-            $0.GetTodoByIdRequest.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.GetTodoByIdRequest.fromBuffer(value),
         ($0.Todo value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.Todo> getTodo_Pre($grpc.ServiceCall call,
-      $async.Future<$0.GetTodoByIdRequest> request) async {
+  $async.Future<$0.Todo> getTodo_Pre($grpc.ServiceCall call, $async.Future<$0.GetTodoByIdRequest> request) async {
     return getTodo(call, await request);
   }
 
-  $async.Stream<$0.Todo> getTodoStream_Pre($grpc.ServiceCall call,
-      $async.Future<$0.GetTodoByIdRequest> request) async* {
+  $async.Stream<$0.Todo> getTodoStream_Pre($grpc.ServiceCall call, $async.Future<$0.GetTodoByIdRequest> request) async* {
     yield* getTodoStream(call, await request);
   }
 
-  $async.Future<$0.Todo> getTodo(
-      $grpc.ServiceCall call, $0.GetTodoByIdRequest request);
-  $async.Stream<$0.Todo> getTodoStream(
-      $grpc.ServiceCall call, $0.GetTodoByIdRequest request);
+  $async.Future<$0.Todo> getTodo($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
+  $async.Stream<$0.Todo> getTodoStream($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
 }

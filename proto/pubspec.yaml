@@ -6,8 +6,8 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
-  grpc: ^3.2.0
-  protobuf: ^2.1.0
+  grpc: ^3.2.2
+  protobuf: ^3.0.0
   
 
 dev_dependencies:

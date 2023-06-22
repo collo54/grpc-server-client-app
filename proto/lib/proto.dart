@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library proto;
+library protos;
 
 export 'src/generated/todo.pb.dart';
 export 'src/generated/todo.pbenum.dart';
